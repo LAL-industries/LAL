@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAL Industries</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                background-color: #000;
+                color: #fff;
+                font-family: "Orbitron", sans-serif;
+                height: 100vh;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: radial-gradient(
+                    circle at center,
+                    rgba(0, 10, 30, 0.5) 0%,
+                    rgba(0, 0, 0, 0.9) 70%
+                );
+            }
+
+            .container {
+                text-align: center;
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                max-width: 1200px;
+            }
+
+            .logo {
+                font-size: 4rem;
+                font-weight: 900;
+                letter-spacing: 4px;
+                margin-bottom: 1rem;
+                position: relative;
+                text-transform: uppercase;
+                background: linear-gradient(90deg, #00a2ff, #0062ff, #00d2ff);
+                background-size: 200% auto;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation:
+                    shine 3s linear infinite,
+                    pulse 2s infinite alternate,
+                    glitch 5s infinite;
+                text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+            }
+
+            .tagline {
+                font-size: 1rem;
+                letter-spacing: 2px;
+                color: #add8e6;
+                opacity: 0.8;
+                text-transform: lowercase;
+            }
+
+            .tagline a {
+                color: #00d2ff;
+                text-decoration: none;
+                position: relative;
+                transition: all 0.3s ease;
+            }
+
+            .tagline a:hover {
+                color: #0062ff;
+            }
+
+            .tagline a::after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                bottom: -2px;
+                left: 0;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    #00d2ff,
+                    transparent
+                );
+                transform: scaleX(0);
+                transition: transform 0.3s ease;
+            }
+
+            .tagline a:hover::after {
+                transform: scaleX(1);
+            }
+
+            .mandala {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 120%;
+                height: 120%;
+                z-index: -1;
+                opacity: 0.25;
+                animation: rotate 180s linear infinite;
+            }
+
+            /* Navigation */
+            .navigation {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                display: flex;
+                gap: 20px;
+            }
+
+            .nav-link {
+                color: #00d2ff;
+                text-decoration: none;
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+                position: relative;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+            }
+
+            .nav-link:hover {
+                color: #fff;
+                text-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
+            }
+
+            .nav-link::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 1px;
+                bottom: -3px;
+                left: 0;
+                background-color: #00d2ff;
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.3s ease;
+            }
+
+            .nav-link:hover::before {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+
+            /* Secret message */
+            .namaste {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                font-size: 0.6rem;
+                color: rgba(0, 210, 255, 0.3);
+                font-weight: 300;
+                letter-spacing: 1px;
+                cursor: pointer;
+            }
+
+            /* Glitch effects */
+            @keyframes glitch {
+                0% {
+                    transform: skew(0deg);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                2% {
+                    transform: skew(3deg);
+                    text-shadow:
+                        -3px 0 #0062ff,
+                        3px 0 #00d2ff;
+                }
+                3% {
+                    transform: skew(0deg);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                8% {
+                    transform: skew(-2deg);
+                    text-shadow:
+                        3px 0 #0062ff,
+                        -3px 0 #00d2ff;
+                }
+                9% {
+                    transform: skew(0deg);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                40% {
+                    transform: skew(0deg);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                42% {
+                    transform: translate(-3px, 3px);
+                    text-shadow:
+                        -2px 0 #0062ff,
+                        2px 0 #00d2ff;
+                }
+                43% {
+                    transform: translate(0, 0);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                60% {
+                    transform: skew(0deg);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                62% {
+                    transform: skew(5deg) translate(2px, -2px);
+                    text-shadow:
+                        4px 0 #0062ff,
+                        -4px 0 #00d2ff;
+                }
+                63% {
+                    transform: skew(0deg) translate(0, 0);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+                100% {
+                    transform: skew(0deg);
+                    text-shadow: 0 0 10px rgba(0, 162, 255, 0.7);
+                }
+            }
+
+            @keyframes shine {
+                0% {
+                    background-position: 0% center;
+                }
+                100% {
+                    background-position: 200% center;
+                }
+            }
+
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                100% {
+                    transform: scale(1.05);
+                }
+            }
+
+            @keyframes rotate {
+                0% {
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+                100% {
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+            }
+
+            /* Edge light effect */
+            .edge-light {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 10px;
+                background: linear-gradient(
+                    to bottom,
+                    rgba(0, 162, 255, 0.3),
+                    transparent
+                );
+                z-index: -1;
+            }
+
+            .edge-light.bottom {
+                top: auto;
+                bottom: 0;
+                background: linear-gradient(
+                    to top,
+                    rgba(0, 162, 255, 0.3),
+                    transparent
+                );
+            }
+
+            .edge-light.left {
+                width: 10px;
+                height: 100%;
+                background: linear-gradient(
+                    to right,
+                    rgba(0, 162, 255, 0.3),
+                    transparent
+                );
+            }
+
+            .edge-light.right {
+                width: 10px;
+                height: 100%;
+                left: auto;
+                right: 0;
+                background: linear-gradient(
+                    to left,
+                    rgba(0, 162, 255, 0.3),
+                    transparent
+                );
+            }
+
+            /* Project modal */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 10;
+                overflow: auto;
+                backdrop-filter: blur(5px);
+            }
+
+            .modal-content {
+                background-color: rgba(0, 10, 30, 0.8);
+                margin: 5% auto;
+                padding: 30px;
+                width: 80%;
+                max-width: 700px;
+                border: 1px solid #0062ff;
+                box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+                position: relative;
+                animation: modalGlitch 0.5s ease-out;
+            }
+
+            @keyframes modalGlitch {
+                0% {
+                    transform: translateX(-10px);
+                    opacity: 0;
+                }
+                25% {
+                    transform: translateX(5px);
+                }
+                50% {
+                    transform: translateX(-3px);
+                }
+                75% {
+                    transform: translateX(2px);
+                }
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                color: #00d2ff;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .close:hover {
+                color: #fff;
+                text-shadow: 0 0 10px #00d2ff;
+            }
+
+            .project-title {
+                color: #00d2ff;
+                margin-bottom: 20px;
+                font-size: 1.8rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                border-bottom: 1px solid #0062ff;
+                padding-bottom: 10px;
+            }
+
+            .project-list {
+                list-style-type: none;
+            }
+
+            .project-list li {
+                margin-bottom: 15px;
+                padding: 15px;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-left: 3px solid #00d2ff;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .project-list li::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(0, 210, 255, 0.1),
+                    transparent
+                );
+                animation: scan 3s linear infinite;
+            }
+
+            @keyframes scan {
+                0% {
+                    left: -100%;
+                }
+                100% {
+                    left: 100%;
+                }
+            }
+
+            .project-list li h3 {
+                color: #fff;
+                margin-bottom: 5px;
+            }
+
+            .project-list li p {
+                color: #add8e6;
+                font-size: 0.9rem;
+            }
+
+            /* Responsive styles */
+            @media (max-width: 768px) {
+                .logo {
+                    font-size: 2.5rem;
+                }
+
+                .tagline {
+                    font-size: 0.8rem;
+                }
+
+                .modal-content {
+                    width: 95%;
+                    padding: 20px;
+                }
+
+                .navigation {
+                    flex-direction: column;
+                    gap: 10px;
+                    align-items: flex-end;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Enhanced SVG Mandala with animated chakra -->
+        <svg
+            class="mandala"
+            viewBox="0 0 1000 1000"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <!-- Background glow -->
+            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stop-color="#0062ff" stop-opacity="0.2" />
+                <stop offset="70%" stop-color="#00d2ff" stop-opacity="0.05" />
+                <stop offset="100%" stop-color="#003366" stop-opacity="0" />
+            </radialGradient>
+            <circle cx="500" cy="500" r="500" fill="url(#bgGlow)" />
+
+            <g fill="none" stroke-linecap="round">
+                <!-- Larger outer circles with gradient and animation -->
+                <circle cx="500" cy="500" r="480" stroke="url(#blueGradient)" stroke-width="2">
+                    <animate attributeName="r" values="480;490;480" dur="15s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.7;1;0.7" dur="8s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="450" stroke="#00a2ff" stroke-width="1.5" opacity="0.8">
+                    <animate attributeName="r" values="450;460;450" dur="12s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="420" stroke="#0062ff" stroke-width="2" opacity="0.6">
+                    <animate attributeName="r" values="420;430;420" dur="20s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="390" stroke="#00d2ff" stroke-width="1" opacity="0.9">
+                    <animate attributeName="r" values="390;400;390" dur="17s" repeatCount="indefinite" />
+                </circle>
+
+                <!-- Enhanced lotus patterns -->
+                <path d="M500,100 C620,220 740,280 900,330 C740,380 620,440 500,560 C380,440 260,380 100,330 C260,280 380,220 500,100 Z"
+                    stroke="#0099ff" stroke-width="3">
+                    <animate attributeName="stroke" values="#0099ff;#00d2ff;#0062ff;#0099ff" dur="8s" repeatCount="indefinite" />
+                </path>
+                <path d="M500,900 C620,780 740,720 900,670 C740,620 620,560 500,440 C380,560 260,620 100,670 C260,720 380,780 500,900 Z"
+                    stroke="#00d2ff" stroke-width="3">
+                    <animate attributeName="stroke" values="#00d2ff;#0062ff;#0099ff;#00d2ff" dur="8s" repeatCount="indefinite" />
+                </path>
+                <path d="M100,500 C220,380 280,260 330,100 C380,260 440,380 560,500 C440,620 380,740 330,900 C280,740 220,620 100,500 Z"
+                    stroke="#0062ff" stroke-width="3">
+                    <animate attributeName="stroke" values="#0062ff;#0099ff;#00d2ff;#0062ff" dur="8s" repeatCount="indefinite" />
+                </path>
+                <path d="M900,500 C780,380 720,260 670,100 C620,260 560,380 440,500 C560,620 620,740 670,900 C720,740 780,620 900,500 Z"
+                    stroke="#0099ff" stroke-width="3">
+                    <animate attributeName="stroke" values="#0099ff;#00d2ff;#0062ff;#0099ff" dur="8s" repeatCount="indefinite" />
+                </path>
+
+                <!-- Additional decorative elements -->
+                <circle cx="500" cy="500" r="360" stroke="#0099ff" stroke-width="1" opacity="0.6" stroke-dasharray="10,5">
+                    <animate attributeName="stroke-dashoffset" from="0" to="30" dur="6s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="330" stroke="#00d2ff" stroke-width="1" opacity="0.8" stroke-dasharray="15,8">
+                    <animate attributeName="stroke-dashoffset" from="0" to="-30" dur="7s" repeatCount="indefinite" />
+                </circle>
+
+                <!-- Enhanced geometric patterns -->
+                <polygon points="500,150 570,280 700,350 570,420 500,550 430,420 300,350 430,280"
+                        stroke="#00a2ff" stroke-width="2" opacity="0.9">
+                    <animate attributeName="opacity" values="0.9;0.6;0.9" dur="5s" repeatCount="indefinite" />
+                </polygon>
+                <polygon points="500,850 570,720 700,650 570,580 500,450 430,580 300,650 430,720"
+                        stroke="#0099ff" stroke-width="2" opacity="0.9">
+                    <animate attributeName="opacity" values="0.9;0.6;0.9" dur="5s" repeatCount="indefinite" />
+                </polygon>
+                <polygon points="150,500 280,430 350,300 420,430 550,500 420,570 350,700 280,570"
+                        stroke="#00d2ff" stroke-width="2" opacity="0.9">
+                    <animate attributeName="opacity" values="0.9;0.6;0.9" dur="5s" repeatCount="indefinite" />
+                </polygon>
+                <polygon points="850,500 720,430 650,300 580,430 450,500 580,570 650,700 720,570"
+                        stroke="#0062ff" stroke-width="2" opacity="0.9">
+                    <animate attributeName="opacity" values="0.9;0.6;0.9" dur="5s" repeatCount="indefinite" />
+                </polygon>
+
+                <!-- Connecting lines with animation -->
+                <line x1="150" y1="150" x2="850" y2="850" stroke="#00a2ff" stroke-width="1" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="8s" repeatCount="indefinite" />
+                </line>
+                <line x1="850" y1="150" x2="150" y2="850" stroke="#00a2ff" stroke-width="1" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="10s" repeatCount="indefinite" />
+                </line>
+                <line x1="500" y1="50" x2="500" y2="950" stroke="#00a2ff" stroke-width="1" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="9s" repeatCount="indefinite" />
+                </line>
+                <line x1="50" y1="500" x2="950" y2="500" stroke="#00a2ff" stroke-width="1" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="7s" repeatCount="indefinite" />
+                </line>
+
+                <!-- Enhanced central chakra -->
+                <circle cx="500" cy="500" r="120" stroke="#00d2ff" stroke-width="3" opacity="0.9">
+                    <animate attributeName="r" values="120;125;120" dur="4s" repeatCount="indefinite" />
+                    <animate attributeName="stroke" values="#00d2ff;#0099ff;#0062ff;#00d2ff" dur="8s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="90" stroke="#0099ff" stroke-width="2" opacity="0.8">
+                    <animate attributeName="r" values="90;95;90" dur="5s" repeatCount="indefinite" />
+                    <animate attributeName="stroke" values="#0099ff;#0062ff;#00d2ff;#0099ff" dur="8s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="60" stroke="#0062ff" stroke-width="2" opacity="0.7">
+                    <animate attributeName="r" values="60;65;60" dur="6s" repeatCount="indefinite" />
+                    <animate attributeName="stroke" values="#0062ff;#00d2ff;#0099ff;#0062ff" dur="8s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="500" cy="500" r="30" stroke="#00a2ff" stroke-width="3" opacity="0.9">
+                    <animate attributeName="opacity" values="0.9;0.5;0.9" dur="3s" repeatCount="indefinite" />
+                </circle>
+
+                <!-- Enhanced chakra spokes with animation and glow -->
+                <line x1="500" y1="380" x2="500" y2="620" stroke="#00d2ff" stroke-width="4">
+                    <animate attributeName="stroke" values="#00d2ff;#0099ff;#00d2ff" dur="4s" repeatCount="indefinite" />
+                </line>
+                <line x1="380" y1="500" x2="620" y2="500" stroke="#0099ff" stroke-width="4">
+                    <animate attributeName="stroke" values="#0099ff;#0062ff;#0099ff" dur="4s" repeatCount="indefinite" />
+                </line>
+                <line x1="415" y1="415" x2="585" y2="585" stroke="#0062ff" stroke-width="4">
+                    <animate attributeName="stroke" values="#0062ff;#00d2ff;#0062ff" dur="4s" repeatCount="indefinite" />
+                </line>
+                <line x1="585" y1="415" x2="415" y2="585" stroke="#00a2ff" stroke-width="4">
+                    <animate attributeName="stroke" values="#00a2ff;#0099ff;#00a2ff" dur="4s" repeatCount="indefinite" />
+                </line>
+
+                <!-- Additional decorative spokes with rotation animation -->
+                <g>
+                    <animateTransform attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="60s" repeatCount="indefinite" />
+                    <line x1="430" y1="390" x2="570" y2="610" stroke="#00d2ff" stroke-width="2" />
+                    <line x1="390" y1="430" x2="610" y2="570" stroke="#0099ff" stroke-width="2" />
+                    <line x1="430" y1="610" x2="570" y2="390" stroke="#0062ff" stroke-width="2" />
+                    <line x1="610" y1="430" x2="390" y2="570" stroke="#00a2ff" stroke-width="2" />
+                </g>
+
+                <!-- Outer rotating ring -->
+                <g>
+                    <animateTransform attributeName="transform" type="rotate" from="360 500 500" to="0 500 500" dur="90s" repeatCount="indefinite" />
+                    <circle cx="500" cy="500" r="250" stroke="#0099ff" stroke-width="1" opacity="0.5" stroke-dasharray="20,10" />
+
+                    <!-- Decorative symbols around the chakra -->
+                    <path d="M500,250 L520,270 L500,290 L480,270 Z" stroke="#00d2ff" stroke-width="2" fill="none" />
+                    <path d="M500,750 L520,730 L500,710 L480,730 Z" stroke="#00d2ff" stroke-width="2" fill="none" />
+                    <path d="M250,500 L270,520 L290,500 L270,480 Z" stroke="#00d2ff" stroke-width="2" fill="none" />
+                    <path d="M750,500 L730,520 L710,500 L730,480 Z" stroke="#00d2ff" stroke-width="2" fill="none" />
+
+                    <!-- Additional symbols at 45 degree angles -->
+                    <path d="M355,355 L375,375 L355,395 L335,375 Z" stroke="#0099ff" stroke-width="2" fill="none" />
+                    <path d="M645,645 L665,665 L645,685 L625,665 Z" stroke="#0099ff" stroke-width="2" fill="none" />
+                    <path d="M355,645 L375,625 L395,645 L375,665 Z" stroke="#0099ff" stroke-width="2" fill="none" />
+                    <path d="M645,355 L625,375 L645,395 L665,375 Z" stroke="#0099ff" stroke-width="2" fill="none" />
+                </g>
+            </g>
+
+            <!-- Definitions for gradients -->
+            <defs>
+                <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00d2ff" />
+                    <stop offset="50%" stop-color="#0099ff" />
+                    <stop offset="100%" stop-color="#0062ff" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <!-- Edge light effects -->
+        <div class="edge-light top"></div>
+        <div class="edge-light bottom"></div>
+        <div class="edge-light left"></div>
+        <div class="edge-light right"></div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <a href="#" class="nav-link projects-link">Projects</a>
+            <a
+                href="https://github.com/LAL-industries"
+                target="_blank"
+                class="nav-link"
+                >GitHub</a
+            >
+            <a href="https://twitter.com" target="_blank" class="nav-link">X</a>
+        </div>
+
+        <!-- Secret message -->
+        <div class="namaste">namaste peps</div>
+
+        <div class="container">
+            <h1 class="logo">LAL-Industries</h1>
+            <p class="tagline">
+                projekt by
+                <a href="https://github.com/sakshamred" target="_blank"
+                    >sakshamred</a
+                >
+            </p>
+        </div>
+
+        <!-- Projects Modal -->
+        <div id="projectsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 class="project-title">Our Projects</h2>
+                <ul class="project-list">
+                    <li>
+                        <h3>Quantum Neural Interface</h3>
+                        <p>
+                            A breakthrough technology combining quantum
+                            computing with neural networks for unprecedented AI
+                            capabilities.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Vedic Algorithm Compiler</h3>
+                        <p>
+                            Translating ancient mathematical principles into
+                            modern computing paradigms.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Digital Consciousness Transfer</h3>
+                        <p>
+                            Experimental tech exploring the boundaries between
+                            human cognition and digital systems.
+                        </p>
+                    </li>
+                    <li>
+                        <h3>Holographic Reality Engine</h3>
+                        <p>
+                            Creating immersive experiences through advanced
+                            light field manipulation inspired by ancient
+                            concepts of maya.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            // Enhanced glitch effect
+            function glitchEffect() {
+                const logo = document.querySelector(".logo");
+                const body = document.querySelector("body");
+
+                // Periodic intense glitches
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        // Major glitch
+                        const glitchIntensity = Math.random() * 10;
+                        const glitchDuration = Math.random() * 200 + 50;
+
+                        logo.style.transform = `skew(${Math.random() * 10 - 5}deg)`;
+                        logo.style.textShadow = `
+                        ${Math.random() * 10 - 5}px ${Math.random() * 10 - 5}px ${Math.random() * 10}px rgba(0, 210, 255, 0.8),
+                        ${Math.random() * 10 - 5}px ${Math.random() * 10 - 5}px ${Math.random() * 10}px rgba(0, 98, 255, 0.8)
+                    `;
+
+                        // Add screen tear effect
+                        const tear = document.createElement("div");
+                        tear.style.position = "fixed";
+                        tear.style.top = Math.random() * 100 + "vh";
+                        tear.style.left = "0";
+                        tear.style.width = "100%";
+                        tear.style.height = Math.random() * 5 + 1 + "px";
+                        tear.style.background = "#00d2ff";
+                        tear.style.opacity = "0.3";
+                        tear.style.zIndex = "5";
+                        tear.style.transform = `translateY(${Math.random() * 10 - 5}px)`;
+
+                        body.appendChild(tear);
+
+                        // Remove tear effect after a short time
+                        setTimeout(() => {
+                            body.removeChild(tear);
+                            logo.style.transform = "none";
+                            logo.style.textShadow =
+                                "0 0 10px rgba
